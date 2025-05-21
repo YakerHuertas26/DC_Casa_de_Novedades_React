@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+    --font-outfit: "Outfit", sans-serif;
+    --font-mochiy:  "Mochiy Pop One", sans-serif;
+
+    /* Colores */
+    --color-plomo-bajo-50: #f5f9fa;
+    --color-plomo-bajo-100: #eaf1f4;
+    --color-plomo-bajo-200: #d1e1e6;
+    --color-plomo-bajo-300: #9abdc7;
+    --color-plomo-bajo-400: #7ba9b5;
+    --color-plomo-bajo-500: #5b8f9c;
+    --color-plomo-bajo-600: #477482;
+    --color-plomo-bajo-700: #3a5e6a;
+    --color-plomo-bajo-800: #335059;
+    --color-plomo-bajo-900: #2e444c;
+    --color-plomo-bajo-950: #1f2c32;
+
+    --color-plomo-oscuro-50: #f4f7fb;
+    --color-plomo-oscuro-100: #e7f0f7;
+    --color-plomo-oscuro-200: #cadeed;
+    --color-plomo-oscuro-300: #9cc3dd;
+    --color-plomo-oscuro-400: #67a3c9;
+    --color-plomo-oscuro-500: #4388b4;
+    --color-plomo-oscuro-600: #326d97;
+    --color-plomo-oscuro-700: #2a587a;
+    --color-plomo-oscuro-800: #29516f;
+    --color-plomo-oscuro-900: #244056;
+    --color-plomo-oscuro-950: #182939;
+
+    --color-rosado-bajo-50: #fbf4f7;
+    --color-rosado-bajo-100: #f8ebef;
+    --color-rosado-bajo-200: #f3d7e1;
+    --color-rosado-bajo-300: #e9b5c7;
+    --color-rosado-bajo-400: #db8ba5;
+    --color-rosado-bajo-500: #cd6785;
+    --color-rosado-bajo-600: #b94965;
+    --color-rosado-bajo-700: #9f374e;
+    --color-rosado-bajo-800: #843041;
+    --color-rosado-bajo-900: #6f2c3a;
+    --color-rosado-bajo-950: #42151e;
+
+
+    --color-rosadoh-50: #fef1f9;
+    --color-rosadoh-100: #fee5f5;
+    --color-rosadoh-200: #ffcbee;
+    --color-rosadoh-300: #ffa1de;
+    --color-rosadoh-400: #ff66c4;
+    --color-rosadoh-500: #fa3aab;
+    --color-rosadoh-600: #ea1888;
+    --color-rosadoh-700: #cc0a6d;
+    --color-rosadoh-800: #a80c59;
+    --color-rosadoh-900: #8c0f4c;
+    --color-rosadoh-950: #56012b;
+
+
+    --color-morado-bajo-50: #f7f6fc;
+    --color-morado-bajo-100: #f0eff8;
+    --color-morado-bajo-200: #e5e1f3;
+    --color-morado-bajo-300: #c5bbe5;
+    --color-morado-bajo-400: #b8a8dd;
+    --color-morado-bajo-500: #9d85cd;
+    --color-morado-bajo-600: #8b69be;
+    --color-morado-bajo-700: #7957aa;
+    --color-morado-bajo-800: #66488f;
+    --color-morado-bajo-900: #553d75;
+    --color-morado-bajo-950: #36264f;
+
+    --color-morado-oscuro-50: #faf6fe;
+    --color-morado-oscuro-100: #f3ebfc;
+    --color-morado-oscuro-200: #eadbf9;
+    --color-morado-oscuro-300: #d9bef4;
+    --color-morado-oscuro-400: #c294ec;
+    --color-morado-oscuro-500: #aa6be1;
+    --color-morado-oscuro-600: #954bd2;
+    --color-morado-oscuro-700: #7f39b7;
+    --color-morado-oscuro-800: #6b3396;
+    --color-morado-oscuro-900: #4b2467;
+    --color-morado-oscuro-950: #3b1358;
+
+    --color-celeste-50: #ecfdff;
+    --color-celeste-100: #d0f8fd;
+    --color-celeste-200: #a6f0fb;
+    --color-celeste-300: #69e2f7;
+    --color-celeste-400: #45d3ee;
+    --color-celeste-500: #09afd1;
+    --color-celeste-600: #0a8bb0;
+    --color-celeste-700: #10708e;
+    --color-celeste-800: #165a74;
+    --color-celeste-900: #174b62;
+    --color-celeste-950: #093143;
+
+    --color-rojo-50: #fdf5f3;
+    --color-rojo-100: #fbe9e5;
+    --color-rojo-200: #f9d6cf;
+    --color-rojo-300: #f4b8ad;
+    --color-rojo-400: #ea8673;
+    --color-rojo-500: #df6a54;
+    --color-rojo-600: #cb4f37;
+    --color-rojo-700: #ab3f2a;
+    --color-rojo-800: #8d3727;
+    --color-rojo-900: #763326;
+    --color-rojo-950: #40170f;
+
+    --color-verde-50: #f1fcf3;
+    --color-verde-100: #dff9e7;
+    --color-verde-200: #c1f1cf;
+    --color-verde-300: #90e5aa;
+    --color-verde-400: #4bcc73;
+    --color-verde-500: #32b55b;
+    --color-verde-600: #249548;
+    --color-verde-700: #1f763b;
+    --color-verde-800: #1e5d33;
+    --color-verde-900: #1a4d2b;
+    --color-verde-950: #092a15;
+
+    --color-melonh-50: #fdfbe9;
+    --color-melonh-100: #fbf6c6;
+    --color-melonh-200: #f8eb90;
+    --color-melonh-300: #f3d951;
+    --color-melonh-400: #eec626;
+    --color-melonh-500: #dead14;
+    --color-melonh-600: #bf860f;
+    --color-melonh-700: #99600f;
+    --color-melonh-800: #7f4d14;
+    --color-melonh-900: #6c3f17;
+    --color-melonh-950: #3f2009;
+
+
+}
+body{
+    font-family: "Outfit", sans-serif;
+}
