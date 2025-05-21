@@ -3,8 +3,7 @@ import App from "../App";
 import { AuthLayout } from "../Layouts/AuthLayout";
 import { Login } from "../Views/Login";
 import { Dashboard } from "../Layouts/dashborad";
-import SidebarLayout from "../Layouts/Prueba";
-
+import { Counter } from "../Views/prueba";
 
 const route= createBrowserRouter([
     {
@@ -26,8 +25,8 @@ const route= createBrowserRouter([
         element:<Dashboard/>
     },
     {
-        path:'/prueba',
-        element:<SidebarLayout/>
+      path:'/prueba',
+        element:<Counter/>  
     }
 ])
 export default route;

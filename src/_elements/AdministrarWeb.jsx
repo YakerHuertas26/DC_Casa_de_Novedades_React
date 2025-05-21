@@ -1,10 +1,13 @@
+import useStore from "../hooks/Store";
+
 const AdministarWeb = () => {
+    const collapse= useStore((store)=> store.collapse)
     return ( 
         <>
             <div className="flex px-2  hover:bg-celeste-400 cursor-pointer">
                 <img src="../icons/web.svg" alt="icono_web" 
                 className="w-7"/>
-                <p className="w-full p-2 font-semibold">Administar Web </p>
+                {collapse && <p className="w-full p-2 font-semibold">Administar Web </p>}
             </div>
             <li className="overflow-y-auto">
                 {/* <ul className="flex flex-col pl-5">
