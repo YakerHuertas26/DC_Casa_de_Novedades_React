@@ -1,15 +1,24 @@
+import axios from "axios";
+import { apiAxios } from "../config/apiAxios";
+
 const Login = () => {
+    // optener dotos con azios
+    const login= async (params) => {
+        
+    }
+    
+    
     return (
         <div className="p-8 shadow-2xl/50 border-5 border-verde-600 md:mt-10 rounded-2xl md:py-10">
             <form action="">
                 <div>
-                    <label htmlFor="name"
+                    <label htmlFor="userName"
                             className="text-[18px]">
                         Usuario:</label>
                     <input 
                         type="text" 
-                        name="name"
-                        id="name"
+                        name="userName"
+                        id="userName"
                         placeholder="Tu usuario"
                         className="w-full p-1 md:mt-2 border-1 border-morado-oscuro-800 bg-plomo-bajo-100 focus:outline-none rounded-md"
                         />
