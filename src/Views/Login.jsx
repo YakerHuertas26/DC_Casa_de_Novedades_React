@@ -2,20 +2,34 @@ import { apiAxios } from "../config/apiAxios";
 import { useForm} from "react-hook-form"
 import { InputError } from "../_elements/InputError";
 import { Toaster, toast } from 'sonner';
+import { useStoreAuth } from "../hooks/Store";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const Login = () => {
     const {register, handleSubmit,formState:{errors},setError,clearErrors}= useForm();
+    const {login,user,isLoggedIn}=useStoreAuth();
+    const navigate = useNavigate(); 
+
+    // Redirige si el usuario ya está autenticado
+    useEffect(() => {
+        if (isLoggedIn && user) {
+        const redirectUrl = user.role === 'admin' ? '/dashboard' : '/dashboardVendedor';
+        navigate(redirectUrl);
+        }
+    }, [isLoggedIn, user, navigate]);
 
     // funtion del handleSubmit / obtengo la data 
     const  handleClickLogin=  handleSubmit(async(datos)=>{
         try {
             // peticion post con axios
             const {data}= await apiAxios.post('/api/login',datos)
-            // redirecciono 
-            console.log(data);
+
+            // // obtendo los datos y añado a estado de zustan
+            login(data.user)
+            console.log(data.user);
             
         } catch (error) {
-            console.log(error);
             
             if (error.response?.status==422) {
                 // añadir los errores al hook form
@@ -27,7 +41,8 @@ const Login = () => {
                 toast.error(error.response.data.message)
             }
             else if(error.response?.status==429){
-                toast.error('Has superado los intetos de inicio de sesión')
+        
+                toast.warning('🔐 Has superado limites de intentos, vuelve en 30 segundo')
             }
             else{
                 console.log('Errores del servidor');
@@ -36,6 +51,8 @@ const Login = () => {
         // limpio mis errores
         clearErrors(); 
     });
+
+    
 
     return (
         <div className="p-8 shadow-2xl/50 border-5 border-verde-600 md:mt-10 rounded-2xl md:py-10">

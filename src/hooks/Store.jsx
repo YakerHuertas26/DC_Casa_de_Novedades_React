@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 // stores complementarios
 const useStore = create((set) => ({
@@ -7,11 +8,23 @@ const useStore = create((set) => ({
 }));
 
 
-// stores autentificación 
+
 export default useStore;
 
+// stores autentificación 
+const useStoreAuth= create(persist( 
+    (set) =>({
+    isLoggedIn:false,
+    user:null,
+    login:(userData)=> set({isLoggedIn:true,user:userData}),
+    logout:()=>{
+                set({isLoggedIn:false,user:null})
+                localStorage.clear();
+            }
+    }),
 
-const useStoreAuth= create((sert)=>{[
-
-]});
+    {
+        name:'auth-storage'
+    }
+));
 export {useStoreAuth}
