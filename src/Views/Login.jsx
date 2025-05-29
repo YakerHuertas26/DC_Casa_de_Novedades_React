@@ -11,13 +11,7 @@ const Login = () => {
     const {login,user,isLoggedIn}=useStoreAuth();
     const navigate = useNavigate(); 
 
-    // Redirige si el usuario ya está autenticado
-    useEffect(() => {
-        if (isLoggedIn && user) {
-        const redirectUrl = user.role === 'admin' ? '/dashboard' : '/dashboardVendedor';
-        navigate(redirectUrl);
-        }
-    }, [isLoggedIn, user, navigate]);
+    
 
     // funtion del handleSubmit / obtengo la data 
     const  handleClickLogin=  handleSubmit(async(datos)=>{
@@ -27,12 +21,11 @@ const Login = () => {
 
             // // obtendo los datos y añado a estado de zustan
             login(data.user)
-            console.log(data.user);
             
         } catch (error) {
             
             if (error.response?.status==422) {
-                // añadir los errores al hook form
+                // añadir los errores al hook form ??
                 if (error.response.data.errors) {
                     Object.entries(error.response.data.errors).forEach(([field, messages]) => {
                         setError(field, { message: messages[0] });
@@ -41,7 +34,6 @@ const Login = () => {
                 toast.error(error.response.data.message)
             }
             else if(error.response?.status==429){
-        
                 toast.warning('🔐 Has superado limites de intentos, vuelve en 30 segundo')
             }
             else{
@@ -51,6 +43,14 @@ const Login = () => {
         // limpio mis errores
         clearErrors(); 
     });
+
+    // Redirige si el usuario ya está autenticado
+    useEffect(() => {
+        if (isLoggedIn && user) {
+        const redirectUrl = user.role === 'admin' ? '/dashboard' : '/dashboardVendedor';
+        navigate(redirectUrl);
+        }
+    }, [isLoggedIn, user, navigate]);
 
     
 

@@ -1,17 +1,21 @@
-import { create } from "zustand";
+import { create} from "zustand";
 import { persist } from "zustand/middleware";
 
-// stores complementarios
-const useStore = create((set) => ({
-    collapse: true,
+
+const useStore = create((set) => ({ 
+}));
+
+export default useStore   
+
+// ++++++ store Dashboard ++++++++
+const useStoreDashboard = create((set) => ({
+    selectedIndex:0,
+    setSelectedIndex: (index) => set({ selectedIndex: index }),
+    collapse: false,
     setCollapse: () => set((state) => ({ collapse: !state.collapse })),
 }));
 
-
-
-export default useStore;
-
-// stores autentificación 
+// +++++ store autentificación +++++ 
 const useStoreAuth= create(persist( 
     (set) =>({
     isLoggedIn:false,
@@ -27,4 +31,4 @@ const useStoreAuth= create(persist(
         name:'auth-storage'
     }
 ));
-export {useStoreAuth}
+export {useStoreAuth,useStoreDashboard}
