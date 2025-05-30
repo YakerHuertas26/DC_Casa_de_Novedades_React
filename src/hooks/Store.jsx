@@ -23,7 +23,7 @@ const useStoreAuth= create(persist(
     login:(userData)=> set({isLoggedIn:true,user:userData}),
     logout:()=>{
                 set({isLoggedIn:false,user:null})
-                localStorage.clear();
+                localStorage.removeItem('auth-storage');;
             }
     }),
 
