@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AdministrarTienda } from "../components/AdministarTienda";
 import { useStoreDashboard } from "../hooks/Store";
+import { NavLink } from "react-router";
 
 const Sidebar = () => {
     const selectedIndex = useStoreDashboard((state) => state.selectedIndex);
@@ -14,7 +15,7 @@ const Sidebar = () => {
                         onClick={()=>setSelectedIndex(0)}>
                             <img src="../icons/home.svg" alt="icono_tienda" 
                             className="w-5 "/>
-                            <p className="w-full p-1 font-semibold text-[13px] md:text-[15px]">Inicio</p>
+                            <NavLink to={'/admin'} className="w-full p-1 font-semibold text-[13px] md:text-[15px]">Inicio</NavLink>
                         </li>
 
                         <AdministrarTienda index={1}/>

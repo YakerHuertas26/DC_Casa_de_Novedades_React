@@ -1,5 +1,5 @@
 import { useEffect, useState, } from "react";
-import { Link } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import menuItems from "../js/menuItems";
 import { useStoreDashboard } from "../hooks/Store";
 
@@ -25,14 +25,8 @@ const AdministrarTienda = ({ index}) => {
                 <img src="../icons/store.svg" alt="icono_tienda" 
                 className="w-5"/>
                 <p className="w-full p-1 font-semibold text-[13px] md:text-[15px]">Administar Tienda </p>
-                
-                { collapse ?
-                    <img src="../icons/right.svg" alt="icono_despegable" 
+                    <img src={`${collapse?"../icons/right.svg":"../icons/down.svg"}`} alt="icono_despegable" 
                     className="w-6"/>
-                    :
-                    <img src="../icons/down.svg" alt="icono_despegable" 
-                    className="w-7"/> 
-                }
             </li>
             
 
@@ -41,16 +35,21 @@ const AdministrarTienda = ({ index}) => {
     );
 }
 const Menu = () => {
+    
     const setSelectedIndex = useStoreDashboard((state) => state.setSelectedIndex);
     const selectedIndex = useStoreDashboard((state) => state.selectedIndex);
-     // seleccionar una option 
-    const[selectOption,setSelectOption]=useState('');
-    
 
-    function handleSelect(e,name){
+     // seleccionar una option 
+    const selectOption=useStoreDashboard((state)=>state.selectOption);
+    const setSelectOption= useStoreDashboard ((state)=>state.setSelectOption);
+    const navigate=useNavigate();
+
+    function handleSelect(e,name,route){
         e.preventDefault()
         setSelectedIndex(1)
         setSelectOption(name)
+        navigate(route);
+        
     }
 
     useEffect(() => {
@@ -66,13 +65,12 @@ const Menu = () => {
                 {menuItems.map(menu=>
                     <li key={menu.id} className={` hover:bg-melonh-300 p-2 ${
                         selectOption === menu.name ? 'bg-melonh-300' : ''}`}>
-                        <Link to={''}
-                            onClick={(e)=>handleSelect(e,menu.name)}
+                        <NavLink
+                            onClick={(e)=>handleSelect(e,menu.name,menu.route)}
                             className="flex items-center gap-1">
-                        <img src={menu.icon} alt={`icono_${menu.name}`} className="w-5"/>
-                        
-                        <p className="text-[13px] md:text-[14px]">{menu.name}</p>
-                        </Link>
+                            <img src={menu.icon} alt={`icono_${menu.name}`} className="w-5"/>
+                            <p className="text-[13px] md:text-[14px]">{menu.name}</p>
+                        </NavLink>
                     </li>
                 )}
             </ul>

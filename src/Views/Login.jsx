@@ -47,7 +47,7 @@ const Login = () => {
     // Redirige si el usuario ya está autenticado
     useEffect(() => {
         if (isLoggedIn && user) {
-        const redirectUrl = user.role === 'admin' ? '/dashboard' : '/dashboardVendedor';
+        const redirectUrl = user.role === 'admin' ? '/admin' : '/dashboardVendedor';
         navigate(redirectUrl);
         }
     }, [isLoggedIn, user, navigate]);

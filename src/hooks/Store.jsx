@@ -13,6 +13,10 @@ const useStoreDashboard = create((set) => ({
     setSelectedIndex: (index) => set({ selectedIndex: index }),
     collapse: false,
     setCollapse: () => set((state) => ({ collapse: !state.collapse })),
+    selectOption:'',
+    setSelectOption:(item)=>set({selectOption:item}),
+    mode:'light',
+    setMode:()=>set((state)=>({mode: state.mode === 'light' ? 'dark' : 'light'}))
 }));
 
 // +++++ store autentificación +++++ 

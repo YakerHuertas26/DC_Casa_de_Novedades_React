@@ -2,16 +2,18 @@ import { useState } from "react";
 import { Sidebar } from "../Layouts/Sidebar";
 import { useStoreAuth, useStoreDashboard } from "../hooks/Store";
 import { EditarPerfil } from "../components/EditarPerfil";
+import { Outlet } from "react-router";
 
 
 const Dashboard = () => {
     const user= useStoreAuth((store)=>store.user);
     const [dropdownMenu,setDropdownMenu]=useState(false);
     // const [menuUser, setMenuUser] = useState(false);
+    const mode=useStoreDashboard((store)=>store.mode);
     
     return (
         <div className="flex flex-col h-screen">
-            <header className=" flex flex-col ">
+            <header className=" flex flex-col " data-theme="light">
                 <div className="w-full flex p-2 justify-center gap-4 items-center bg-rosadoh-300  md:p-1">
                     <img src="../img/logo.png" alt="Logo" 
                         className="w-10"/>
@@ -41,15 +43,15 @@ const Dashboard = () => {
                 </div>
             </header>
             
-            <div className="flex h-screen overflow-hidden">
-                <aside className="flex flex-col border-r-1">
+            <div className="flex h-screen overflow-hidden" data-theme={mode}>
+                <aside className={`flex flex-col ${dropdownMenu?'border-r-1':''}`}>
                     {dropdownMenu && <Sidebar/> }
                 </aside>
                 
                 <main className="flex-1">
-                    <div className="p-2 ">
-                        Contenido principal
-                    </div>
+                    
+                        <Outlet/>
+                    
                 </main>
             </div>
         </div>

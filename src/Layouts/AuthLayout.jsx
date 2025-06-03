@@ -4,7 +4,7 @@ Outlet
 const AuthLayout = () => {
     return ( 
         <main className="h-screen bg-[url(/img/fondo_mobile.png)] bg-cover bg-center p-4 
-        md:flex md:justify-evenly md:gap-10 md:items-center md:bg-[url(/img/fondo_desktop.png)] md:px-20 md:py-10">
+        md:flex md:justify-evenly md:gap-10 md:items-center md:bg-[url(/img/fondo_desktop.png)] md:px-20 md:py-10" data-theme="light">
                 
                 <div className="flex flex-col h-[44%] justify-evenly items-center py-2 
                 md:h-[90%] md:w-[70%] lg:w-[40%]">
