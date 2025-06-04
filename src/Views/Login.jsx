@@ -37,7 +37,7 @@ const Login = () => {
                 toast.warning('🔐 Has superado limites de intentos, vuelve en 30 segundo')
             }
             else{
-                console.log('Errores del servidor');
+                toast.warning('Errores del servidor');
             }
         }
         // limpio mis errores
@@ -113,7 +113,6 @@ const Login = () => {
             <Toaster 
                 position="top-center" 
                 richColors
-                text-center
                 />
         </div>
     );

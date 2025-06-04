@@ -1,8 +1,4 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-    themes: light --default, dark --prefersdark;
-};
-
 
 @theme {
     --font-outfit: "Outfit", sans-serif;
@@ -135,4 +131,7 @@
 }
 body{
     font-family: "Outfit", sans-serif;
+}
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark;
 }

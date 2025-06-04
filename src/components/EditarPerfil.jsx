@@ -1,6 +1,7 @@
 import { useNavigate,NavLink } from "react-router";
 import { apiAxios } from "../config/apiAxios";
 import { useStoreAuth, useStoreDashboard } from "../hooks/Store";
+import { toast, Toaster } from "sonner";
 
 
 const EditarPerfil = () => {
@@ -16,7 +17,9 @@ const EditarPerfil = () => {
         navigate('/login');
         
         } catch (error) {
-            console.log(error);   
+            toast.error('Error al cerrar sesión');
+            console.log(error);
+            
         }
         
     }
@@ -42,7 +45,12 @@ const EditarPerfil = () => {
                     <img src="../icons/logout.svg" alt="cerrar sesión" className="w-6"/>
                 </button>
             </div>
-        </div> 
+            <Toaster
+                position="top-center"
+                richColors
+            />
+        </div>
+
     );
 }
 
