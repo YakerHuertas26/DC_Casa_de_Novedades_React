@@ -24,6 +24,7 @@ const EditarPerfil = () => {
         
     }
     return ( 
+        <>
         <div className="absolute top-9 right-0 border mx-4 p-3 rounded-2xl bg-morado-bajo-200
         shadow-md/30 z-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200">
             <div className="flex flex-col gap-2">
@@ -45,12 +46,12 @@ const EditarPerfil = () => {
                     <img src="../icons/logout.svg" alt="cerrar sesión" className="w-6"/>
                 </button>
             </div>
+        </div>
             <Toaster
                 position="top-center"
                 richColors
             />
-        </div>
-
+        </>
     );
 }
 

@@ -11,8 +11,6 @@ const Login = () => {
     const {login,user,isLoggedIn}=useStoreAuth();
     const navigate = useNavigate(); 
 
-    
-
     // funtion del handleSubmit / obtengo la data 
     const  handleClickLogin=  handleSubmit(async(datos)=>{
         try {
@@ -31,13 +29,20 @@ const Login = () => {
                         setError(field, { message: messages[0] });
                     });
                 }
-                toast.error(error.response.data.message)
             }
+            else if(error.response?.status==401){
+                if (error.response.data.message==='credenciales invalidas') {
+                    toast.warning('Credenciales Inválidas')
+                }
+            }
+            
             else if(error.response?.status==429){
                 toast.warning('🔐 Has superado limites de intentos, vuelve en 30 segundo')
             }
             else{
                 toast.warning('Errores del servidor');
+                console.log(error);
+                
             }
         }
         // limpio mis errores
@@ -96,7 +101,7 @@ const Login = () => {
                         name="password"
                         id="password"
                         placeholder="********"
-                        className={`w-full p-1 md:mt-2 border-1 ${errors.userName?'border-red-600 border-2':'border-morado-oscuro-800 border-2'} bg-plomo-bajo-100 focus:outline-none rounded-md`}
+                        className={`w-full p-1 md:mt-2 border-1 ${errors.password?'border-red-600 border-2':'border-morado-oscuro-800 border-2'} bg-plomo-bajo-100 focus:outline-none rounded-md`}
                         />
                         {errors.password &&(
                             <InputError>{errors.password.message}</InputError>

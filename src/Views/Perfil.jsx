@@ -4,23 +4,33 @@ import useSWR from "swr";
 import { Loading } from "../_elements/Loading";
 import { toast, Toaster } from "sonner";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { InputError } from "../_elements/InputError";
 
 const Perfil = () => {
-    // función de petición axios 
+    // validad y obtener datos con hoock form
+    const{register,handleSubmit,setError,formState:{errors},clearErrors}=useForm();
+
+    // función de petición axios, obtener datos del user 
     const fetcher= ()=> apiAxios.get('/api/user').then(res=>res.data.data);
-    // swr
+    // swr revalidar dotos del user 
     const { data, error, isLoading } = useSWR('/api/user', fetcher,{
-        refreshInterval:1000
+        // refreshInterval:1000
     })
+    // en caso haya erroes
     if (error) {
         toast.error('error al cargar los datos')
     }
-    
     const [editPassword,setEditPassword] = useState(false);
     // console.log(data.keyWord.length);
+    console.log(data);
     
+    const guardarDatos= handleSubmit((data)=>{
+        console.log(data);
+    });
+    
+
     return (
-        
         isLoading? <Loading/>:
             
             <div className="text-[15px]  py-2 md:p-5 w-[90%] h-full flex flex-col gap-2 sm:w-[80%] md:text-[18px] md:gap-4 sm:justify-center sm:items-center m-auto overflow-y-auto ">
@@ -32,39 +42,64 @@ const Perfil = () => {
                             <div>
                                 <label htmlFor="name" className="font-semibold">Nombre:</label>
                                 <input
+                                    {...register('name',{
+                                        required:{value:true, message:'El nombre es requerido'}
+                                    })}
                                     type="text"
                                     id="name"
                                     value={data.name}
                                     className="w-full border rounded-lg px-2"
                                     />
+                                    {errors.name &&
+                                        <InputError>{errors.name.message}</InputError>
+                                    }
                             </div>
                             <div className="mt-2">
                                 <label htmlFor="userName" className="font-semibold">Nombre de usuario:</label>
                                 <input
+                                    {...register('userName',{
+                                        required:{value:true,message:'El nombre de usuario requerido'}
+                                    })}
                                     type="text"
                                     id="userName"
                                     value={data.userName}
                                     className="w-full border rounded-lg px-2"
                                     />
+                                    {errors.userName&& 
+                                        <InputError>{errors.userName.message}</InputError>
+                                    }
                             </div>
                             <div className="mt-2">
                                 <label htmlFor="email" className="font-semibold">Correo:</label>
-                                <input
+                                <input 
+                                    {...register('email',{
+                                        required:{value:true, message:'El correo el requerido'},
+                                    
+                                    })}
                                     type="text"
                                     id="email"
                                     value={data.email}
                                     className="w-full border rounded-lg px-2"
                                     />
+                                    {errors.email &&
+                                        <InputError>{errors.email.message}</InputError>
+                                    }
                             </div>
                             {data.keyWord.length===0 &&
                                 <div className="mt-2">
                                 <label htmlFor="keyWord" className="font-semibold">Palabra clave:</label>
                                 <input
+                                    {...register('keyWord',{
+                                        required:{value:true, message:'La paralabra clave es requerido'}
+                                    })}
                                     type="text"
                                     id="keyWord"
                                     value={data.keyWord}
                                     className="w-full border rounded-lg px-2"
                                     />
+                                    {errors.keyWord && 
+                                        <InputError>{errors.keyWord.message}</InputError>                                    
+                                    }
                             </div>
                             }
                             
@@ -110,7 +145,8 @@ const Perfil = () => {
                     <input 
                         type="submit" 
                         value="Guardar" 
-                        className="bg-morado-bajo-500 mx-10 rounded-lg p-1 px-4 font-black text-lg sm:w-[200px] hover:bg-morado-bajo-700 hover:text-white cursor-pointer" 
+                        className="bg-morado-bajo-500 mx-10 rounded-lg p-1 px-4 font-black text-lg sm:w-[200px] hover:bg-morado-bajo-700 hover:text-white cursor-pointer"
+                        onClick={guardarDatos} 
                     />
                 </form>
                 <Toaster 

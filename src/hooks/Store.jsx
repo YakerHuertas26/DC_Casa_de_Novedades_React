@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { create} from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -28,8 +29,12 @@ const useStoreAuth= create(persist(
     logout:()=>{
                 set({isLoggedIn:false,user:null})
                 localStorage.removeItem('auth-storage');;
-            }
-    }),
+            },
+    forceLogout: (messaje) => {
+        set({ isLoggedIn: false, user: null });
+        localStorage.removeItem('auth-storage');
+        toast.error(messaje);
+    }}),
 
     {
         name:'auth-storage'
