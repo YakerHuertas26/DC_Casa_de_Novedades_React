@@ -1,15 +1,19 @@
-import { useNavigate,NavLink } from "react-router";
+import { NavLink, useNavigate} from "react-router";
 import { apiAxios } from "../config/apiAxios";
-import { useStoreAuth, useStoreDashboard } from "../hooks/Store";
-import { toast, Toaster } from "sonner";
+import { useStoreAuth, useStoreDashboard, useStoreMode } from "../hooks/Store";
+import { toast } from "sonner";
+import { forwardRef, memo, useEffect, useRef } from "react";
+import { useShallow } from "zustand/shallow";
 
-
-const EditarPerfil = () => {
+const MenuUser = memo(forwardRef((props, ref) => {
     const navigate=useNavigate()
-    const Logout= useStoreAuth((store)=>store.logout);
-    const mode=useStoreDashboard((store)=>store.mode);
-    const setMode=useStoreDashboard((store)=>store.setMode);
-    
+    const Logout= useStoreAuth(useShallow((store)=>store.logout));
+    const mode=useStoreMode(useShallow((store)=>store.mode));
+    const setMode=useStoreMode(useShallow((store)=>store.setMode));
+    const menuUser=useStoreDashboard(useShallow((store)=>store.menuUser));
+    const setMenuUser=useStoreDashboard(useShallow((store)=>store.setMenuUser));
+
+
     async function logout(){
         try {
             await apiAxios.post('/api/logout',null)
@@ -18,15 +22,14 @@ const EditarPerfil = () => {
         
         } catch (error) {
             toast.error('Error al cerrar sesión');
-            console.log(error);
-            
+            console.log(error); 
         }
-        
     }
     return ( 
-        <>
-        <div className="absolute top-9 right-0 border mx-4 p-3 rounded-2xl bg-morado-bajo-200
-        shadow-md/30 z-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200">
+        <div 
+        ref={ref}
+        className="absolute top-9 right-0 border mx-4 p-3 rounded-2xl bg-morado-bajo-200
+        transition-opacity duration-200">
             <div className="flex flex-col gap-2">
                 <div className="hover:bg-red-300 hover:rounded-lg cursor-pointer p-2 flex items-center gap-2" 
                 onClick={setMode}>
@@ -47,12 +50,7 @@ const EditarPerfil = () => {
                 </button>
             </div>
         </div>
-            <Toaster
-                position="top-center"
-                richColors
-            />
-        </>
     );
-}
+}))
 
-export { EditarPerfil };
+export { MenuUser };

@@ -1,8 +1,10 @@
 import { Outlet } from "react-router";
+import { Toaster } from "sonner";
 
 Outlet
 const AuthLayout = () => {
     return ( 
+        <>
         <main className="h-screen bg-[url(/img/fondo_mobile.png)] bg-cover bg-center p-4 
         md:flex md:justify-evenly md:gap-10 md:items-center md:bg-[url(/img/fondo_desktop.png)] md:px-20 md:py-10" data-theme="light">
                 
@@ -17,6 +19,8 @@ const AuthLayout = () => {
                 </div>
                 <Outlet/>
         </main>
+        <Toaster position="top-center" richColors />
+        </>
     );
 }
 

@@ -16,8 +16,14 @@ const useStoreDashboard = create((set) => ({
     setCollapse: () => set((state) => ({ collapse: !state.collapse })),
     selectOption:'',
     setSelectOption:(item)=>set({selectOption:item}),
-    mode:'light',
-    setMode:()=>set((state)=>({mode: state.mode === 'light' ? 'dark' : 'light'}))
+    menuUser:false,
+    setMenuUser:()=>set(state=>({menuUser:!state.menuUser})),
+}));
+
+// +++++++ store Mode +++++++
+const useStoreMode= create((set) => ({
+    mode: 'light',
+    setMode: () => set((state) => ({ mode: state.mode === 'light' ? 'dark' : 'light' }))
 }));
 
 // +++++ store autentificación +++++ 
@@ -40,4 +46,4 @@ const useStoreAuth= create(persist(
         name:'auth-storage'
     }
 ));
-export {useStoreAuth,useStoreDashboard}
+export {useStoreAuth,useStoreDashboard,useStoreMode}

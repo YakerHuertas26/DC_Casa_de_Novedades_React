@@ -23,8 +23,7 @@ apiAxios.interceptors.response.use(
                 // Forzar cierre de sesión cuando el token expire
                 store.forceLogout('Tu sesión ha expirado, por favor inicia sesión nuevamente');
                 // Redirigir al login
-                window.location.href = '/login'; // Usamos window.location para recargar completamente
-            
+                window.location.href = '/login'; // Usamos window.location para recargar completamente   
         }
 
         return Promise.reject(error);

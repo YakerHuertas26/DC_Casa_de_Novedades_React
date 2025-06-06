@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { AdministrarTienda } from "../components/AdministarTienda";
 import { useStoreDashboard } from "../hooks/Store";
 import { NavLink } from "react-router";
 
-const Sidebar = () => {
+const Sidebar =memo(() => {
     const selectedIndex = useStoreDashboard((state) => state.selectedIndex);
     const setSelectedIndex = useStoreDashboard((state) => state.setSelectedIndex);
     return (
@@ -25,6 +25,6 @@ const Sidebar = () => {
             </div>
 
     );
-};
+});
 
 export { Sidebar };
