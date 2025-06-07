@@ -7,6 +7,7 @@ import { DashboardVendedor } from "../Layouts/DashboardVendedor";
 import { useStoreAuth } from "../hooks/Store";
 import { Perfil } from "../Views/Perfil";
 import { Vendedores } from "../components/Vendedores";
+import { Categorias } from "../Views/Categorias";
 
 // rutas protegidas
 const ProtectedRoute = ({ children, allowedRoles }) => {
@@ -47,6 +48,10 @@ const route= createBrowserRouter([
             {
                 path:'/admin/vendedores',
                 element:<Vendedores/>
+            },
+            {
+                path:'/admin/categoria',
+                element:<Categorias/>
             }
         ]
     },

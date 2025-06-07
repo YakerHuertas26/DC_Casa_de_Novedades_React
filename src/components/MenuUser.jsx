@@ -10,16 +10,14 @@ const MenuUser = memo(forwardRef((props, ref) => {
     const Logout= useStoreAuth(useShallow((store)=>store.logout));
     const mode=useStoreMode(useShallow((store)=>store.mode));
     const setMode=useStoreMode(useShallow((store)=>store.setMode));
-    const menuUser=useStoreDashboard(useShallow((store)=>store.menuUser));
-    const setMenuUser=useStoreDashboard(useShallow((store)=>store.setMenuUser));
-
+    const setMenuUser = useStoreDashboard(useShallow((store) => store.setMenuUser));
 
     async function logout(){
         try {
-            await apiAxios.post('/api/logout',null)
+        await apiAxios.post('/api/logout',null)
         Logout();
         navigate('/login');
-        
+        setMenuUser();
         } catch (error) {
             toast.error('Error al cerrar sesión');
             console.log(error); 

@@ -34,7 +34,7 @@ const Dashboard = () => {
     }, [menuUser, setMenuUser]);
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen ">
             <header className=" flex flex-col " data-theme="light">
                 <div className="w-full flex p-2 justify-center gap-4 items-center bg-rosadoh-300  md:p-1">
                     <img src="../img/logo.png" alt="Logo"
@@ -77,7 +77,7 @@ const Dashboard = () => {
 export { Dashboard }
 
 const MainContent = memo(() => (
-    <main className="flex-1">
+    <main className="flex-1 h-full">
         <Outlet />
     </main>
 ));
