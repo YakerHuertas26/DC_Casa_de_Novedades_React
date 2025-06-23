@@ -27,7 +27,7 @@ const MenuUser = memo(forwardRef((props, ref) => {
         <div 
         ref={ref}
         className="absolute top-9 right-0 border mx-4 p-3 rounded-2xl bg-morado-bajo-200
-        transition-opacity duration-200">
+        transition-opacity duration-200 z-100">
             <div className="flex flex-col gap-2">
                 <div className="hover:bg-red-300 hover:rounded-lg cursor-pointer p-2 flex items-center gap-2" 
                 onClick={setMode}>

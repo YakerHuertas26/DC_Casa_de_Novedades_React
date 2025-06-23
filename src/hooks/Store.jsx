@@ -46,4 +46,9 @@ const useStoreAuth= create(persist(
         name:'auth-storage'
     }
 ));
-export {useStoreAuth,useStoreDashboard,useStoreMode}
+
+const useModal = create((set)=>({
+    modalCategory: false,
+    setModalCategory: ()=> set((state)=>({modalCategory:!state.modalCategory}))
+}));
+export {useStoreAuth,useStoreDashboard,useStoreMode,useModal}
